@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">import base64</p>
+<p class="p2"><br></p>
+<p class="p1">def get_base64(file_path):</p>
+<p class="p1"><span class="Apple-converted-space">    </span>with open(file_path, "rb") as image_file:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return base64.b64encode(image_file.read()).decode('utf-8')</p>
+<p class="p2"><br></p>
+<p class="p1"># Using the uploaded files</p>
+<p class="p1"># 1758796350-removebg-preview.jpg as the Hero Photo</p>
+<p class="p1"># 1758796644-removebg-preview.jpg as the LV Pouch</p>
+<p class="p1">hero_base64 = get_base64('1758796350-removebg-preview.jpg')</p>
+<p class="p1">lv_base64 = get_base64('1758796644-removebg-preview.jpg')</p>
+<p class="p2"><br></p>
+<p class="p1">html_content = f"""</p>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;RIMOWA | Domi's Gift Shop&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@font-face {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Rimowa';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>src: local('Helvetica Neue'), local('Helvetica'), sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>:root {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--rimowa-black: #000000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--rimowa-silver: #D2D5D7;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--rimowa-gray: #707070;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--rimowa-bg: #FFFFFF;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--rimowa-soft-gray: #F6F6F6;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>* {{ margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--rimowa-bg);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--rimowa-black);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.5;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow-x: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Rimowa Grooves Background */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.groove-bg {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0; left: 0; width: 100%; height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,0,0,0.03) 40px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: -1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Nav Bar 1:1 */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>nav {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 60px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 1px solid #e5e5e5;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: sticky;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1000;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.rimowa-logo {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.cart-icon {{ font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Container */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.container {{ max-width: 100%; padding: 0; }}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Page Transitions */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.page {{ display: none; animation: fadeIn 0.4s ease-in-out; }}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.page.active {{ display: block; }}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes fadeIn {{ from {{ opacity: 0; }} to {{ opacity: 1; }} }}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Landing Page (Hero) */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.hero-section {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 40px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.hero-image-container {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.hero-image {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.hero-title {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 28px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 300;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.hero-subtitle {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--rimowa-gray);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 40px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Buttons */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-rimowa {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: var(--rimowa-black);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px 40px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: calc(100% - 40px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: opacity 0.2s;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-rimowa:active {{ opacity: 0.8; }}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Product Cards */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.product-grid {{ padding: 20px; }}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.product-card {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 40px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.product-img {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: var(--rimowa-soft-gray);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.product-name {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 500;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.product-meta {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 13px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--rimowa-gray);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Reveal View */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.reveal-header {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 60px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: var(--rimowa-black);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.reveal-header h1 {{ letter-spacing: 6px; font-weight: 300; font-size: 24px; }}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Spotify Bar */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.spotify-bar {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bottom: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-top: 1px solid #eee;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1001;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: height 0.3s;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 60px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.spotify-bar.open {{ height: 152px; }}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.spotify-trigger {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 60px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 11px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>#confetti-canvas {{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0; left: 0; width: 100%; height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 2000;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="groove-bg"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;canvas id="confetti-canvas"&gt;&lt;/canvas&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="rimowa-logo"&gt;RIMOWA&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="cart-icon" id="cart-counter"&gt;Cart (0)&lt;/div&gt;</p>
+<p class="p1">&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="page-landing" class="page active"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hero-section"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="hero-image-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;img src="data:image/jpeg;base64,{hero_base64}" class="hero-image" alt="30 Years of Love"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="hero-title"&gt;30 Years of Love&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="hero-subtitle"&gt;CELEBRATING DOMINIQUE SUTER&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn-rimowa" onclick="goTo('page-shop')"&gt;Explore the Collection&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="page-shop" class="page"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="product-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="product-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;img src="https://www.rimowa.com/on/demandware.static/-/Sites-rimowa-master-catalog-final/default/dwc28ea253/images/large/92573014_1.png" class="product-img"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-name"&gt;Check-In L&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-meta"&gt;Black Aluminum&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn-rimowa" onclick="addToCart('Check-In L')"&gt;Add to Selection&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="product-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;img src="data:image/jpeg;base64,{lv_base64}" class="product-img"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-name"&gt;LV Toiletry Pouch 25&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-meta"&gt;Damier Ebene Canvas&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn-rimowa" onclick="addToCart('LV Pouch 25')"&gt;Add to Selection&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="page-cart" class="page"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="padding: 40px 20px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; font-weight: 400;"&gt;Your Selection&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="cart-list"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div style="display: flex; justify-content: space-between; text-transform: uppercase; font-size: 14px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span&gt;Total&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span&gt;Reserved&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn-rimowa" style="margin: 40px 0 0 0; width: 100%;" onclick="goTo('page-checkout')"&gt;Checkout&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="page-checkout" class="page"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="padding: 40px 20px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; font-weight: 400;"&gt;Personal Info&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div style="background: var(--rimowa-soft-gray); padding: 25px; border-radius: 2px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p style="font-size: 11px; text-transform: uppercase; color: var(--rimowa-gray); margin-bottom: 5px;"&gt;Recipient&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p style="font-size: 18px; margin-bottom: 25px; letter-spacing: 1px;"&gt;Dominique Suter&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p style="font-size: 11px; text-transform: uppercase; color: var(--rimowa-gray); margin-bottom: 5px;"&gt;Shipping&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p style="font-size: 16px; margin-bottom: 25px;"&gt;Priority Hand-Delivery&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p style="font-size: 11px; text-transform: uppercase; color: var(--rimowa-gray); margin-bottom: 5px;"&gt;Method&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p style="font-size: 16px;"&gt;Gift Pre-Paid&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn-rimowa" style="margin: 40px 0 0 0; width: 100%;" onclick="reveal()"&gt;Confirm Order&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="page-reveal" class="page"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="reveal-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p style="font-size: 12px; letter-spacing: 4px; margin-bottom: 10px;"&gt;SUCCESSFULLY RESERVED&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1&gt;HAPPY BIRTHDAY!&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div style="padding: 20px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="product-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;img src="https://www.rimowa.com/on/demandware.static/-/Sites-rimowa-master-catalog-final/default/dwc28ea253/images/large/92573014_1.png" class="product-img" style="max-width: 250px; margin: 0 auto;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-name"&gt;Check-In L&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="https://www.rimowa.com/gb/en/luggage/colour/black/check-in-l/92573014.html" style="color: black; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;"&gt;View Official Product&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="product-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;img src="data:image/jpeg;base64,{lv_base64}" class="product-img" style="max-width: 250px; margin: 0 auto;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="product-name"&gt;LV Toiletry Pouch 25&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="https://www.vinted.co.uk/items/7163896671-louis-vuitton-damier-ebene-canvas-toiletry-pouch-25" style="color: black; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;"&gt;View Listing&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p style="text-align: center; color: var(--rimowa-gray); font-size: 13px; margin-top: 40px; font-style: italic;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>The perfect companions for your next journey.</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="spotify-bar" id="spotify-player"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="spotify-trigger" onclick="toggleSpotify()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;🎵 Play Soundtrack&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;iframe src="https://open.spotify.com/embed/playlist/5Y2vI0G7pX9xYf1r8L7k6U?utm_source=generator&amp;theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let cart = [];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function goTo(pageId) {{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.querySelectorAll('.page').forEach(p =&gt; p.classList.remove('active'));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById(pageId).classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>window.scrollTo(0, 0);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function addToCart(item) {{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if(!cart.includes(item)) cart.push(item);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('cart-counter').innerText = `Cart (${{cart.length}})`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateCartUI();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>goTo('page-cart');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function updateCartUI() {{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const list = document.getElementById('cart-list');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>list.innerHTML = cart.map(item =&gt; `</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div style="display:flex; justify-content:space-between; margin-bottom: 15px; font-size: 15px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span&gt;${{item}}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span&gt;Included&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>`).join('');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function toggleSpotify() {{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('spotify-player').classList.toggle('open');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function reveal() {{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>confetti({{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>particleCount: 150,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>spread: 70,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>origin: {{ y: 0.6 }},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>colors: ['#000000', '#D2D5D7', '#FFFFFF']</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setTimeout(() =&gt; goTo('page-reveal'), 300);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}}</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+<p class="p1">"""</p>
+<p class="p2"><br></p>
+<p class="p1">with open('domis_gift_shop_v2.html', 'w') as f:</p>
+<p class="p1"><span class="Apple-converted-space">    </span>f.write(html_content)</p>
+</body>
+</html>
